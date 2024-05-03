@@ -69,6 +69,7 @@ public class AuthController {
     @GetMapping("/welcome")
     public ResponseEntity<?> getUser()
     {
+        // hard corded credentials
         String username="user123";
         String password="password123";
         AuthRequestDto authRequestDto=new AuthRequestDto(username, password);

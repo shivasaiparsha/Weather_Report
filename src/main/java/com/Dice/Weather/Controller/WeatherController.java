@@ -27,24 +27,24 @@ public class WeatherController {
           try{
 
               return weatherService.getWeatherSummaryByName(placeName);
-          }
-          catch (LocationNotFoundException e){
-              // incorrect location entered
-              log.error("Incorrect Location name"+e.getMessage());
-              return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-          }
-          catch (NullPointerException e){
-              // null fields or empty field entered
-              return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-          }
-          catch (RemoteApiException e){
-              // exception from remote api
-              return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-          }
-          catch (Exception e){
-              // other exception
-              return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-          }
+
+    } catch (LocationNotFoundException e) {
+        // incorrect location entered
+        log.error("LocationNotFoundException occurred: Incorrect Location name - {}", placeName, e);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    } catch (NullPointerException e) {
+        // null fields or empty field entered
+        log.error("NullPointerException occurred: Null or empty field entered", e);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
+    } catch (RemoteApiException e) {
+        // exception from remote API
+        log.error("RemoteApiException occurred: Exception from remote API", e);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    } catch (Exception e) {
+        // other exceptions
+        log.error("Exception occurred: {}", e.getMessage(), e);
+        return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
+    }
     }
 
     @GetMapping("/getHourlyForecastByLocationName/{placeName}")
@@ -53,17 +53,21 @@ public class WeatherController {
 
         try{
             return weatherService.getHourlyBasedWeatherReport(placeName);
-        }
-        catch (LocationNotFoundException e){
+        } catch (LocationNotFoundException e) {
+            // incorrect location entered
+            log.error("LocationNotFoundException occurred: Incorrect Location name - {}", placeName, e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-        catch (NullPointerException e){
+        } catch (NullPointerException e) {
+            // null fields or empty field entered
+            log.error("NullPointerException occurred: Null or empty field entered", e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
-        }
-        catch (RemoteApiException e){
+        } catch (RemoteApiException e) {
+            // exception from remote API
+            log.error("RemoteApiException occurred: Exception from remote API", e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-        catch (Exception e){
+        } catch (Exception e) {
+            // other exceptions
+            log.error("Exception occurred: {}", e.getMessage(), e);
             return new ResponseEntity<>(e.getMessage(), HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
