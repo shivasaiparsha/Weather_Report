@@ -3,6 +3,7 @@ package com.Dice.Weather.Controller;
 import com.Dice.Weather.CustomException.LocationNotFoundException;
 import com.Dice.Weather.CustomException.RemoteApiException;
 import com.Dice.Weather.Services.WeatherServiceImpl;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -14,6 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/api/v1/weather")
+@Slf4j
 public class WeatherController {
 
     @Autowired
@@ -28,6 +30,7 @@ public class WeatherController {
           }
           catch (LocationNotFoundException e){
               // incorrect location entered
+              log.error("Incorrect Location name"+e.getMessage());
               return new ResponseEntity<>(e.getMessage(), HttpStatus.BAD_REQUEST);
           }
           catch (NullPointerException e){
