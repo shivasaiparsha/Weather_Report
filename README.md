@@ -63,7 +63,7 @@
  - To use the application's features, the user need to includes the token received in the previous step as a bearer token in the Authentication header of subsequent requests. This allows the user to access protected resources or perform actions on behalf of the authenticated user.
 
  #### Location-Specific Weather Report Summary
-  http://localhost:8080/api/v1/weather/getWeatherByPlaceName/{enter Location Name Here}
+  http://localhost:8080/api/v1/weather/getWeatherByPlaceName/{ enter Location Name Here}
   --
   ![Screenshot (126)](https://github.com/shivasaiparsha/Weather_Report/assets/112009608/15a08c67-b534-4889-9f79-b8a1e6e4e859)
 
@@ -71,7 +71,7 @@
 
 #### Hourly Weather Forecast for Specified Location
 
-http://localhost:8080/api/v1/weather//getHourlyForecastByLocationName/{placeName}
+http://localhost:8080/api/v1/weather/getHourlyForecastByLocationName/{ enter placeName here }
   --
 - Upon sending request to  /getHourlyForecastByLocationName endpoint provides end users with a detailed weather forecast specific to a given location name. This forecast encompasses hourly updates, offering insights into temperature variations, precipitation chances, wind speeds, and atmospheric conditions tailored to the specified location.
 
