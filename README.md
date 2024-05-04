@@ -46,13 +46,15 @@
  
   http://localhost:8080/welcome
 
-  ![Screenshot (124)](https://github.com/shivasaiparsha/Weather_Report/assets/112009608/bf558418-bcf9-4a08-a5ed-3f1e31537044)
+![Screenshot (124)](https://github.com/shivasaiparsha/Weather_Report/assets/112009608/2bd8ff99-43a6-4732-b666-52366bc98243)
 
   --
 - The user need to send a request to the /welcome endpoint to receive a username and password.
 #### Get JWT Token 
   http://localhost:8080/auth/login
   --
+  ![Screenshot (125)](https://github.com/shivasaiparsha/Weather_Report/assets/112009608/cf17222b-cb24-45e2-b2af-596c17d2facd)
+
 -  With the username and password obtained from the /welcome response, the user sends another request to the /auth/login endpoint to authenticate. This endpoint likely requires the username and password in the request body or as parameters.
 #### Receive token
 - Upon successful authentication, the /auth/login endpoint responds with a token. This token serves as a form of authentication for subsequent requests.
@@ -63,6 +65,8 @@
  #### Location-Specific Weather Report Summary
   http://localhost:8080/api/v1/weather/getWeatherByPlaceName/{enter Location Name Here}
   --
+  ![Screenshot (126)](https://github.com/shivasaiparsha/Weather_Report/assets/112009608/15a08c67-b534-4889-9f79-b8a1e6e4e859)
+
 - Upon sending request to the /api/v1/weather/getWeatherByPlaceName/{name} endpoint, users can retrieve a summary of the weather report for a specific location. This summary offers a concise overview of current weather conditions, encompassing temperature, humidity, precipitation, wind speed, and atmospheric pressure. 
 
 #### Hourly Weather Forecast for Specified Location
