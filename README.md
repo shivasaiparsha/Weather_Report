@@ -19,7 +19,7 @@
 
   Clone this repository to your local machine using the following HTTPS link:
 
-  https://github.com/shivasaiparsha/Weather_Repor
+  https://github.com/shivasaiparsha/Weather_Report
 
 
 
