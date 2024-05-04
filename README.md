@@ -87,6 +87,7 @@ http://localhost:8080/api/v1/weather/getHourlyForecastByLocationName/{ enter pla
 
 ### Reduced API Calls
 - Through the utilization of Stanford NLP, erroneous location inputs are intercepted and validated locally, significantly reducing the need for unnecessary API calls. This proactive approach ensures optimal resource utilization and enhances the efficiency of our service.
+- **Example : Expected_City_Name="Berlin", User entered="berl" or "Berlings" or "Berki"**
 ## Feedback
 
 If you have any feedback, please reach out to us at shivasaiparsha140@gmai.com
