@@ -45,6 +45,9 @@
  #### Request to /welcome endpoint
  
   http://localhost:8080/welcome
+
+  ![Screenshot (124)](https://github.com/shivasaiparsha/Weather_Report/assets/112009608/bf558418-bcf9-4a08-a5ed-3f1e31537044)
+
   --
 - The user need to send a request to the /welcome endpoint to receive a username and password.
 #### Get JWT Token 
