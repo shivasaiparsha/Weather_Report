@@ -67,9 +67,9 @@ public class User implements UserDetails {
         return true;
     }
 
-    public   UserDetails getUser()
+    public   UserDetails getUser(String username, String password)
     {
-        User user=new User(this.username, this.password, this.role);
+        User user=new User(username, password, this.role);
         return (UserDetails) (user);
     }
 

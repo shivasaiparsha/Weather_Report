@@ -3,6 +3,7 @@ package com.Dice.Weather.Controller;
 import com.Dice.Weather.Dtos.AuthRequestDto;
 import com.Dice.Weather.JwtFilter.JwtService;
 import com.Dice.Weather.SecurityFilterImpl.UserDetailsServiceImp;
+import com.Dice.Weather.Services.AuthService;
 import lombok.Builder;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -17,10 +18,14 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.HashMap;
+
 @RestController
 @RequestMapping
 @Builder
 public class AuthController {
+
+
 
 
 
@@ -34,7 +39,10 @@ public class AuthController {
     UserDetailsServiceImp userDetailsServiceImp;
 
 
-    PasswordEncoder passwordEncoder=new BCryptPasswordEncoder();
+
+
+    @Autowired
+    private AuthService authService;
 
 
     @PostMapping("/auth/login")
@@ -42,7 +50,7 @@ public class AuthController {
 
         System.out.println(authRequestDTO.getUsername()+" "+authRequestDTO.getPassword());
         try {
-            if(Authenticate(authRequestDTO)) {
+            if(authService.Authenticate(authRequestDTO)) {
                 String accessToken = jwtService.GenerateToken(authRequestDTO.getUsername());
 
                 return new ResponseEntity<>(accessToken, HttpStatus.OK);
@@ -70,41 +78,11 @@ public class AuthController {
     public ResponseEntity<?> getUser()
     {
         // hard corded credentials
-        String username="user123";
-        String password="password123";
+        String credentialArray[]=authService.getCredentials(); // this method used to generate valid credentials to logni
+        String username=credentialArray[0]; // the first string of array is username
+        String password=credentialArray[1]; // the second index string of array is password
         AuthRequestDto authRequestDto=new AuthRequestDto(username, password);
         return new ResponseEntity<>(authRequestDto, HttpStatus.OK);
     }
-
-
-
-    // Autnticate user
-    public boolean Authenticate(AuthRequestDto authRequestDto) throws BadCredentialsException,UsernameNotFoundException
-    {
-        try {
-            String username = authRequestDto.getUsername();
-            String password = authRequestDto.getPassword();
-            String encryptedPassword=passwordEncoder.encode(password);
-            UserDetails user = new UserDetailsServiceImp().loadUserByUsername(username);
-
-            if(user==null) throw new  UsernameNotFoundException(username+" not found");// if user  not found
-            //passwordEncoder.matches(encryptedPassword, passwordEncoder.encode(user.getPassword()))
-            if(user.getPassword().equals(password)) return true ; // if password matches return true
-            else throw new BadCredentialsException("password incorrect");
-
-        }
-        catch (UsernameNotFoundException e)
-        {
-            throw new UsernameNotFoundException(e.getMessage());
-        }
-        catch (Exception e){
-
-            throw new BadCredentialsException(e.getMessage());
-        }
-
-    }
-
-
-
 
 }
