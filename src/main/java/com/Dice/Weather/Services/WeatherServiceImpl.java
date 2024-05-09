@@ -41,12 +41,12 @@ public class WeatherServiceImpl implements WeatherServiceInterface{
 
                 Map<String, String> params = new HashMap<>(); // map attributes with value
               params.put("name", name);
-                HttpEntity<?> requestEntityEntity = new HttpEntity<>(headers);
+                HttpEntity<?> requestEntity= new HttpEntity<>(headers);
 
 
                 UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(baseurl);
 
-                return restTemplate.exchange(builder.buildAndExpand(params).toUri(), HttpMethod.GET, requestEntityEntity, String.class);
+                return restTemplate.exchange(builder.buildAndExpand(params).toUri(), HttpMethod.GET, requestEntity, String.class);
             }
             catch (RestClientException e){
                 // it will catch if any error with  remote api's server not found etc
@@ -74,15 +74,15 @@ public class WeatherServiceImpl implements WeatherServiceInterface{
 
           Map<String, String> params = new HashMap<>();
               params.put("name", placeName);
-          HttpEntity<?> requestEntityEntity = new HttpEntity<>(headers);
+          HttpEntity<?> requestEntity = new HttpEntity<>(headers);
 
 
           UriComponentsBuilder builder = UriComponentsBuilder.fromUriString(url);
 
-          System.out.println(builder.buildAndExpand(params).toUri());
 
 
-          return restTemplate.exchange(builder.buildAndExpand(params).toUri(), HttpMethod.GET, requestEntityEntity, String.class);
+
+          return restTemplate.exchange(builder.buildAndExpand(params).toUri(), HttpMethod.GET, requestEntity, String.class);
       }
             catch (RestClientException e){
 
